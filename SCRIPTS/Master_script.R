@@ -9,6 +9,7 @@ dataset <- read_delim(
   here("DATA", "abm_exam_data.txt") 
 )
 
+
 #explore the data:
 head(dataset)
 tail(dataset)
@@ -32,4 +33,14 @@ summary(data_tidy)
 glimpse(data_tidy)
 skimr::skim(data_tidy)
 naniar::gg_miss_var(data_tidy)
+
+#fix date variable to Year YYYY/MM
+
+data_tidy$date <- ym(data_tidy$date)
+
+data_tidy$date <- format(as.Date(data_tidy$date, "%Y/%m/%d"), "%Y/%m")
+
+
+
+
 
