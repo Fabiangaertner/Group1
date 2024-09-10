@@ -33,3 +33,21 @@ glimpse(data_tidy)
 skimr::skim(data_tidy)
 naniar::gg_miss_var(data_tidy)
 
+view(data_tidy)
+
+#AKM branch----
+#rename existing columns to be more intuitive and readable
+data_tidy <- data_tidy %>% 
+  rename("acute_bacterial_meningitis" = abm)
+data_tidy <- data_tidy %>%
+  rename("gram_stain_result" = gram)
+data_tidy <- data_tidy %>% 
+  rename("sampling_date" = date)
+
+#redusere antall desimaler i variabel "blood_wbc"
+
+data_tidy$blood_wbc <- round(data_tidy$blood_wbc, digits = 2)
+
+
+
+
