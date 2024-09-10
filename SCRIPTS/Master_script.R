@@ -33,3 +33,21 @@ glimpse(data_tidy)
 skimr::skim(data_tidy)
 naniar::gg_miss_var(data_tidy)
 
+#Fortsettelse på egne greiner, herved silje
+
+#Endre navn på variabel for alder
+#Endre til mnder ved <1år og år ved >1år, med 2desimal for mnder
+data_tidy <- data_tidy %>%
+  rename(age = "1.age")
+
+data_tidy$age <- ifelse(data_tidy$age >= 1, 
+  paste(data_tidy$age, "years"), 
+  paste(round(data_tidy$age * 12, 2), "months"))
+
+data_tidy
+
+
+
+
+
+
