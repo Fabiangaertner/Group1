@@ -29,3 +29,4 @@
 # Få oversikt på nedlastet data og utføre endringer for bedre struktur
 # I datasettet er noen pasienter ført flere ganger, bla pga variabelen feature type som inneholder både race og sex
 # Endrer variabelnavn for å hindre dobbeltføring
+# 
