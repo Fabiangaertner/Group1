@@ -51,6 +51,8 @@ data_tidy <- data_tidy %>%
   rename("gram_stain_result" = gram)
 data_tidy <- data_tidy %>% 
   rename("sampling_date" = date)
+data_tidy <- data_tidy %>%
+  rename("id" = id)
 
 #redusere antall desimaler i variabel "blood_wbc"
 
@@ -67,10 +69,31 @@ data_tidy$age <- ifelse(data_tidy$age >= 1,
   paste(data_tidy$age, "years"), 
   paste(round(data_tidy$age * 12, 2), "months"))
 
-data_tidy
+view(data_tidy)
 
+#Anna  - Create a column showing sex as `0/1` (and `NA` for missing, if any)
+##skaper ny numerisk variabel der det er definert nye navn på de tre ulike observasjonene vi har (male, female, none)
 
+data_tidy <- data_tidy %>% 
+  mutate(sex_as_factor = case_when(
+    sex == "male" ~ 0,
+    sex == "female" ~ 1,
+    sex == "none" ~ NA))
 
+##den nye numeriske variabelen av kjønn gjøres om til faktor-variabel. Har allerede definerte levels
 
+data_tidy$sex_as_factor <- as.factor(data_tidy$sex_as_factor)
 
+##sjekker at det ble en faktor, hvilke levels som finnes, og at NA ikke er et av disse levels
+class(data_tidy$sex_as_factor)
+unique(data_tidy$sex_as_factor)
+view(data_tidy)
 
+#Anna - Set the order of columns as: `id, age, sex` and other columns
+data_tidy <- data_tidy %>% 
+  select(id, age, sex, everything())
+
+#Anna - Arrange ID column of your dataset in order of increasing number or alphabetically
+data_tidy <- data_tidy %>% 
+  arrange(id)
+ 
