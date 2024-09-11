@@ -69,7 +69,28 @@ data_tidy$age <- ifelse(data_tidy$age >= 1,
   paste(data_tidy$age, "years"), 
   paste(round(data_tidy$age * 12, 2), "months"))
 
+#new_columns
 view(data_tidy)
+
+# new column showing whether `blood_neut_pct` is higher than 35 or not/ High/Low
+data_tidy <- data_tidy %>% 
+mutate(blood_neut_pct_highvslow = if_else(
+  blood_neut_pct > 35,
+  "high", "low"
+    )
+)
+
+#- A numeric column showing `blood_cult` as a percentage of highest possible value (11): blood cult / highest blood cult
+max_blood_cult <- max(data_tidy$blood_cult, na.rm = TRUE)
+data_tidy <- data_tidy %>% 
+  mutate(blood_cult_percentage = round(
+    blood_cult / max_blood_cult,
+    digits = 2
+    ))
+class(data_tidy$blood_cult)
+
+data_tidy %>% select(blood_cult, blood_cult_percentage)
+
 
 #Anna  - Create a column showing sex as `0/1` (and `NA` for missing, if any)
 ##skaper ny numerisk variabel der det er definert nye navn på de tre ulike observasjonene vi har (male, female, none)
