@@ -28,5 +28,14 @@
 
 # Få oversikt på nedlastet data og utføre endringer for bedre struktur
 # I datasettet er noen pasienter ført flere ganger, bla pga variabelen feature type som inneholder både race og sex
-# Endrer variabelnavn for å hindre dobbeltføring
-# 
+# Endrer katogorisering av variabler for å hindre dobbeltføring
+# Endrer desimaler
+# Endret variabelnavn
+
+# Noen av oppgavene, finne koder ble utført separat
+# I forbindelse med individuelt arbeid laget 2 medlemmer grener som de arbeidet på
+# Når fullført koding, lagret, comit, pushed og dermed pullrequest og   merge på github
+# Deretter pull ny versjon via R studio
+
+3. Fortsetter tidying, adjust og explore
+#
