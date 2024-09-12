@@ -1,0 +1,36 @@
+Codebook for joined, tidy dataset
+
+variable			description					type
+id				id number					double
+age				age in years with decimals			double
+age2				age in years or months if <1 year		character
+sex				female, male or NA				character
+sampling_date			year/month (e.g. 1978/01)			character
+blood_wbc			white blood cell count in blood, 
+				in thousands of cells per mm			double
+blood_neut_pct			% white blood cells that are neutrophils	double
+blood_band_pct			% white blood cells that are band cells 
+				(immature neutrophils)				double
+blood_gluc			blood glucose, mg/dl				double
+csf_gluc.x			CSF (cerebrospinal fluid) glucose, mg/dl	double
+csf_prot			CSF protein, mg/dl				double
+csf_rbc				CSF red blood cells, thousands of cells per mm	double
+csf_wbc		 		CSF white blood cells,thousands of cells per mm	double
+csf_neut_pct			CSF neutrophil percentage, percent of total 
+				white blood cells in CSF			double
+csf_lymph_pct			CSF lymphocyte percentage, percent of total 
+				white blood cells in CSF			double
+gram_stain_result		gram stain result				double, values 0-6
+csf_cult			result of csf culture for bacterial growth	double, values 0-6
+blood_cult			result of blood culture for bacterial growth	double, values 0-6
+acute_bacterial_meningitis	outcome variable, viral/bacterial meningitis	double, 0 = viral 1 = bacterial
+csf_mono_cnt			CSF monocyte count, thousands of cells per mm	double
+race				black/white/none				character
+blood_neut_pct_highvslow	high <35%, low<35%				character
+blood_cult_percentage		percentage of highest measured blood_cult
+				as between 0-1 					double
+sex_as_factor			male=0, female=1				factor with 2 levels
+csf_gluc.y			CSF (cerebrospinal fluid) glucose, mg/dl
+				from additional dataset (same as csf_gluc.x)	double
+
+

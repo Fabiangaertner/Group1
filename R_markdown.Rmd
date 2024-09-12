@@ -1,0 +1,64 @@
+---
+title: "R markdown group 1"
+author: "Silje Johansen //
+Fabian Gärtner //
+Anna Kleppe Moe"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+full_data <- read_delim(
+  here("DATA", "full_data_tidy_2024-09-12.txt")
+)
+```
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Data
+Our original dataset consisted of  1162 observations of 20 variables. These were data on 581 patients, with main variable being abm, (presence of acute bacterial meningitis). There were variables on different proteins and cells in blood samples and cerebrospinal fluid samples obtained from the patients, as well as basic demographics such as sex, age, race, date of sampling...
+
+## Tidy data
+To tidy our data we...
+
+- explored using different functions such as 
+head, tail, summary, glimpse, skimr::skim, naniar::gg_miss_var
+- changed feature type and feature_value by "pivot wider" function to new "sex" and "race" variables. This helped us to reduce the observations to 581 (one per id instead of two).
+- changed the date variable to a format easier to understand
+- added a new age2 variable easier to understand as character in years and months
+- added new variable demonstrating `blood_neut_pct` as high/low (>35)
+- added new variable with blood_cult as percentage (blood_cult / highest blood cult)
+- added new variable with sex as a numeric variable, sex_as_factor 
+- reduced number of decimals in some variables
+- renamed variables to be more intuitive, especially main outcome variable abm to "acute_bacterial_meningitis"
+- ordered the columns specifically, and arranged id column increasingly
+
+## Additional data set
+The additional dataset only contained id variable and csf_gluc variable, which we already had in our first dataset. Still, we fully joined these two dataset, successfully. We did several assignments stratifying (group_by) by sex, filtering for different things (blood_cult=0, race), and reported minimum, maximum, mean and sd values using "summarise". 
+
+```{r}
+
+test_table <- table(full_data$sex_as_factor, full_data$acute_bacterial_meningitis)
+
+colnames(test_table) <- c("non-bacterial meningitis", "bacterial meningitis")
+rownames(test_table) <- c("male", "female")
+
+test_table
+
+```
+
+
+## Plots
+
+## Statistical analyses
+
+## Technical specifications
+```{r}
+sessionInfo()
+```
+

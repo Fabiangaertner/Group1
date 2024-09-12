@@ -58,16 +58,19 @@ data_tidy <- data_tidy %>%
 
 data_tidy$blood_wbc <- round(data_tidy$blood_wbc, digits = 2)
 
-#Fortsettelse pC% egne greiner, herved silje
+#Silje - Fortsettelse pC% egne greiner
 
 #Endre navn pC% variabel for alder
 #Endre til mnder ved <1C%r og C%r ved >1C%r, med 2desimal for mnder
 data_tidy <- data_tidy %>%
   rename(age = "1.age")
 
-data_tidy$age <- ifelse(data_tidy$age >= 1, 
-  paste(data_tidy$age, "years"), 
-  paste(round(data_tidy$age * 12, 2), "months"))
+data_tidy <- data_tidy %>%
+  mutate(age2 = age)
+
+data_tidy$age2 <- ifelse(data_tidy$age >= 1, 
+  paste(data_tidy$age2, "years"), 
+  paste(round(data_tidy$age2 * 12, 2), "months"))
 
 #new_columns
 view(data_tidy)
@@ -112,7 +115,7 @@ view(data_tidy)
 
 #Anna - Set the order of columns as: `id, age, sex` and other columns
 data_tidy <- data_tidy %>% 
-  select(id, age, sex, everything())
+  select(id, age, age2, sex, everything())
 
 #Anna - Arrange ID column of your dataset in order of increasing number or alphabetically
 data_tidy <- data_tidy %>% 
