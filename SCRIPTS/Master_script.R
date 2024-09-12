@@ -52,7 +52,7 @@ data_tidy <- data_tidy %>%
 data_tidy <- data_tidy %>% 
   rename("sampling_date" = date)
 data_tidy <- data_tidy %>%
-  rename("id" = id)
+  rename("id" = casenum)
 
 #redusere antall desimaler i variabel "blood_wbc"
 
