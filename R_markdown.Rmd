@@ -17,13 +17,10 @@ full_data <- read_delim(
 )
 ```
 
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
 ## Data
 Our original dataset consisted of  1162 observations of 20 variables. These were data on 581 patients, with main variable being abm, (presence of acute bacterial meningitis). There were variables on different proteins and cells in blood samples and cerebrospinal fluid samples obtained from the patients, as well as basic demographics such as sex, age, race, date of sampling...
 
-## Tidy data
+## Tidy and wrangling data
 To tidy our data we...
 
 - explored using different functions such as 
@@ -41,21 +38,89 @@ head, tail, summary, glimpse, skimr::skim, naniar::gg_miss_var
 ## Additional data set
 The additional dataset only contained id variable and csf_gluc variable, which we already had in our first dataset. Still, we fully joined these two dataset, successfully. We did several assignments stratifying (group_by) by sex, filtering for different things (blood_cult=0, race), and reported minimum, maximum, mean and sd values using "summarise". 
 
-```{r}
 
-test_table <- table(full_data$sex_as_factor, full_data$acute_bacterial_meningitis)
+## Plots
+#### 1. To analyze if the glucose level in blood depends on sex, we did boxplot, t-test and mann u whitney test.
+```{r, echo=FALSE}
+boxplot(blood_gluc ~ sex, data = full_data,
+        main = "Does glucose level depend on sex?",
+        ylab = "Blood glucose level, mg/dl",
+        xlab = "sex",
+        col = "orange")
 
-colnames(test_table) <- c("non-bacterial meningitis", "bacterial meningitis")
-rownames(test_table) <- c("male", "female")
+t.test(blood_gluc ~ sex, data = full_data)
+wilcox.test(blood_gluc ~ sex, data = full_data)
+```
 
-test_table
+
+#### 2. To analyze if the glucose level in blood depends on race, we did boxplot and kruskal-wallis test.
+```{r, echo=FALSE}
+boxplot(blood_gluc ~ race, data = full_data,
+        main = "Does glucose level depend on race?",
+        ylab = "Blood glucose level, mg/dl",
+        xlab = "race",
+        col = "orange")
+
+kruskal.test(blood_gluc ~ race, data = full_data)
 
 ```
 
 
-## Plots
+#### 3. To analyze if the glucose level in CSF (cerebrospinal fluid) depends on race, we did boxplot and kruskal-wallis test.
+```{r, echo=FALSE}
+boxplot(csf_gluc.x ~ race, data = full_data,
+        main = "Does glucose level in CSF depend on race?",
+        ylab = "CSF glucose level, mg/dl",
+        xlab = "race",
+        col = "orange")
+
+kruskal.test(csf_gluc.x ~ race, data = full_data)
+```
+
+
+#### 4. To analyze if the glucose level in CSF (cerebrospinal fluid) depends on sex, we did boxplot and kruskal-wallis test.
+```{r, echo=FALSE}
+boxplot(csf_gluc.x ~ sex, data = full_data,
+        main = "Does CSF-glucose level depend on sex?",
+        ylab = "CSF glucose leve, mg/dl",
+        xlab = "sex",
+        col = "orange")
+
+kruskal.test(csf_gluc.x ~ sex, data = full_data)
+```
+
 
 ## Statistical analyses
+#### 1. We analyzed if there is a difference in the occurrence of the disease (acute baterial meningitis) by sex, by making a cross-table and chi-square test.
+
+```{r, echo=FALSE}
+table_data <- table(full_data$sex_as_factor, full_data$acute_bacterial_meningitis)
+colnames(table_data) <- c("non-bacterial meningitis", "bacterial meningitis")
+rownames(table_data) <- c("male", "female")
+table_data
+
+chi_squared_result <- chisq.test(table_data)
+chi_squared_result
+```
+
+#### 2. We analyzed if the occurance of ABM depends on age, by doing a t-test. 
+```{r, echo=FALSE}
+t_test_result <- t.test(age ~ acute_bacterial_meningitis, data = full_data)
+t_test_result
+
+```
+
+#### 3. We analyzed if there is a difference in occurance of ABM by race, by making a table and doing a chi-square test. 
+```{r, echo=FALSE}
+table_data2 <- table(full_data$race, full_data$acute_bacterial_meningitis)
+
+colnames(table_data2) <- c("non-bacterial meningitis", "bacterial meningitis")
+table_data2
+
+chi_squared_result2 <- chisq.test(table_data2)
+chi_squared_result2
+```
+
 
 ## Technical specifications
 ```{r}
