@@ -1,41 +1,32 @@
 #Eksamensoppgave for gruppe 1. RMED901
 #Forfattere: Fabian Gartner, Anna Kleppe Moe og Silje Johansen
-#Opprettet 09.09.24
-#Sist oppdatert 09.09.24
-.
+#Date: 19-09-24
 
-1.Lage felles repository og nytt prosjekt i R-studi. Systematisere filene i en naturlig struktur med tilgang for alle;
-# Ene gruppemedlemet opprettet et nytt repository på github; kalt group1
-# Gruppeoppretter deler med øvrig medlemmer
-# Samtlige gruppemeldlemmer ser at det er registrert og mottatt innbydelse i github. 
-# Ene gruppemedlem åpner nytt prosjekt i R studio, Group1, via version control og bruker SSH-kode funnet i github ved repository
-# Øvrig medlem åpner nytt prosjekt og henter da samme versjon via SSH nøkkel og version control.
-# Se til at alle har et R psojekt med samme titulering av versjon, vanligvis master
-# Ene gruppemedlem laster ned samtlige filer fra nett som hører til oppgave
-# Ulike filer lagres i ulike mapper systematisk.Fx egen datafil
-# Ene gruppemedlem lager en ny scriptfil koding samt en README fil for beskrivelse
-# Samtlige filer krysses av i git for staged- comit og til slutt push
-# Øvrig gruppemedlem ser oppdatert versjon i github.
-# Øvrig gruppemedlem kan pull via git i R studio og få siste versjon av filer og mappesortering
+The "Group1" directory contains 
+-the main Group1.proj file, which is the whole project we made for this exam. 
+-the original exam description file 
+-R markdown files, in both Rmd and html files. Here, we present what we did for the exam, including selected plots and .
+-mit LICENSE file recommended by course leader 
+-.gitignore file (related to github collaboration)
+-.Rhistory
+-Current README-file
+-a txt-file with some extra notes to ourselves :) (Grundig_summary.txt) 
 
-2.Lese og rydde datasettet;
-# Åpne aktuelle bibliotek for å rydde aktuelt datasett
-# I eksamensoppgave library(tidyverse) og library(here)
-# read funksjon for å lese datasettet. 
-# here bibliotek lager forkortet veg som må presiseres for hvor finne datasett, se kode for spesifikasjon
-# Lag et eget navn på nytt objekt som inneholder nedlastet data
-# se at data, med eget nytt navn(her; dataset) kjem som obejekt i environment
 
-# Få oversikt på nedlastet data og utføre endringer for bedre struktur
-# I datasettet er noen pasienter ført flere ganger, bla pga variabelen feature type som inneholder både race og sex
-# Endrer katogorisering av variabler for å hindre dobbeltføring
-# Endrer desimaler
-# Endret variabelnavn
+In the "Group1" > "DATA" directory:
 
-# Noen av oppgavene, finne koder ble utført separat
-# I forbindelse med individuelt arbeid laget 2 medlemmer grener som de arbeidet på
-# Når fullført koding, lagret, comit, pushed og dermed pullrequest og   merge på github
-# Deretter pull ny versjon via R studio
+-Two raw data files, abm_data_txt and exam_abm_joindata.txt, and the original codebook, codebook_exam_data.html
 
-3. Fortsetter tidying, adjust og explore
-#
+-We have tidied and wrangled the data and created a new tidy dataset, full_data_tidy_2024-09-12.txt. (we assume the full_data_tidy_2024-09-19.txt file is the exact same, and was created because we ran all our codes one last time, but were a bit scared to delete it...). 
+
+-New updated codebook, codebook_new.txt.
+
+
+In the "Group1" > "SCRIPTS" directory there are four scripts: 
+1. Master_script.R is the first script, which was made by doing assignments individually in branches, and then merging the codes into the master file.
+
+2. Script_join_data.R is the second script, consisting of both raw data files. The assignments in this script were performed by two group members cooperating in the same script (master)
+
+3. scripts_plots.R with day 7 assignmnets was performed in one master branch, but there was cooperation and discussion within the whole group.
+
+4. Analysis.R script is the final script, consisting analysis (day 8 assignments).This was also performed in one master branch, but there was cooperation and discussion within the whole group on which tests to perform and how. 
