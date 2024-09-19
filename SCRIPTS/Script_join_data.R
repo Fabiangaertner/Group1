@@ -79,8 +79,8 @@ rownames(test_table) <- c("male", "female")
 test_table
 
 #Lagring av fil, gir først filnavn, string, og så lagrer i DATA-mappen
-fileName <- paste0("full_data_tidy_", Sys.Date(), ".txt")
-write_delim(full_data, 
-            file = here("DATA", fileName), delim="\t")
+#fileName <- paste0("full_data_tidy_", Sys.Date(), ".txt")
+#write_delim(full_data, 
+ #           file = here("DATA", fileName), delim="\t")
 
   
